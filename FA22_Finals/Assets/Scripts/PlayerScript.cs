@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    [SerializeField]
     Vector3 mousePosition;
     public float moveSpeed;
     Rigidbody2D rb;
@@ -57,6 +58,7 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
         rb.MovePosition(position);
     }
 }
