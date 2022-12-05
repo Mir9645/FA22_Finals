@@ -6,9 +6,11 @@ public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
     Vector3 mousePosition;
+    Vector3 mouseDirection;
     public float moveSpeed;
     Rigidbody2D rb;
     Vector2 position = new Vector2(0f, 0f);
+    public float mousemindistance;
 
     //[SerializeField]
     //public float speed;
@@ -30,7 +32,16 @@ public class PlayerScript : MonoBehaviour
     {
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mouseDirection = mousePosition - transform.position;
+        mouseDirection.z = 0f;
         position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+
+        Vector3 testMouseDirection = mousePosition - transform.position;
+                testMouseDirection.z = 0f;
+                if (testMouseDirection.magnitude >= mousemindistance)
+        {
+            mouseDirection = testMouseDirection;
+        }
 
         //Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //transform.position = pos;
@@ -58,7 +69,7 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
-        rb.MovePosition(position);
+        Vector3 targetPosition = transform.position + mouseDirection.normalized * moveSpeed;
+        rb.MovePosition(targetPosition);
     }
 }
