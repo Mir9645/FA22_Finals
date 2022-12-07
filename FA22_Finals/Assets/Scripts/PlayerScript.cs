@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D rb;
     Vector2 position = new Vector2(0f, 0f);
     public float mousemindistance;
+    public bool IsinOrbit = false;
 
     //[SerializeField]
     //public float speed;
@@ -43,33 +44,47 @@ public class PlayerScript : MonoBehaviour
             mouseDirection = testMouseDirection;
         }
 
-        //Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //transform.position = pos;
+        if (Input.GetKeyUp(KeyCode.Space) && IsinOrbit == true)
+        {
+            transform.SetParent(null, true);
+            IsinOrbit = false;
+        }
 
-        //Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+            //Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //transform.position = pos;
 
-        //float horizontalInput = Input.GetAxis("Horizontal");
-        //float verticalInput = Input.GetAxis("Vertical");
+            //Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
-        //Vector2 movementDirection = new Vector2(horizontalInput, verticalInput);
-        //float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
-        //movementDirection.Normalize();
+            //float horizontalInput = Input.GetAxis("Horizontal");
+            //float verticalInput = Input.GetAxis("Vertical");
 
-        //transform.Translate(movementDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
+            //Vector2 movementDirection = new Vector2(horizontalInput, verticalInput);
+            //float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
+            //movementDirection.Normalize();
 
-        //if (movementDirection != Vector2.zero)
-        //{
-        //    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
-        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        //}
-    }
+            //transform.Translate(movementDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
 
-    private void FixedUpdate()
+            //if (movementDirection != Vector2.zero)
+            //{
+            //    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
+            //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            //}
+        }
+
+        private void FixedUpdate()
     {
-        Vector3 targetPosition = transform.position + mouseDirection.normalized * moveSpeed;
-        rb.MovePosition(targetPosition);
+        if (IsinOrbit == false)
+        {
+            Vector3 targetPosition = transform.position + mouseDirection.normalized * moveSpeed;
+            rb.MovePosition(targetPosition);
+        }
+        else
+        {
+            // drag down in to orbit
+        }
+       
     }
 }

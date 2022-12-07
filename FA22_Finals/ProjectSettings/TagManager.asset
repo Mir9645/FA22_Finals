@@ -44,6 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 3682443627
     locked: 0
+  - name: Planets
+    uniqueID: 1200684207
+    locked: 0
   - name: Player
     uniqueID: 1282762519
     locked: 0
