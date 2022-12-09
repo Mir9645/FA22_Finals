@@ -19,7 +19,12 @@ public class FollowPlayer : MonoBehaviour
 
     }
 
-    void Update()
+    public Vector3 GetLastknownDistance()
+    {
+        return storedPositions[storedPositions.Count - 1] - storedPositions[storedPositions.Count - 2];
+    }
+
+    void FixedUpdate()
     {
         if (storedPositions.Count == 0)
         {

@@ -7,8 +7,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     Vector3 mousePosition;
     Vector3 mouseDirection;
+    Vector3 NewPlayerVelocity;
+    Vector3 NewPlayerDirection;
 
     public float moveSpeed;
+    public float ControlDelay;
+    public float FlingSpeed;
+
+
     public Rigidbody2D rb;
     Vector2 position = new Vector2(0f, 0f);
 
@@ -21,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     public float PlayerRadius;
     public LayerMask PlanetMask;
 
+    public FollowPlayer Follower;
     Planet planetScript;
 
     //[SerializeField]
@@ -36,6 +43,7 @@ public class PlayerScript : MonoBehaviour
     {
         Cursor.visible = false;
         rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(Vector3.right);
     }
 
     // Update is called once per frame
@@ -61,6 +69,10 @@ public class PlayerScript : MonoBehaviour
             transform.SetParent(null, true);
             IsinOrbit = false;
             rb.bodyType = RigidbodyType2D.Dynamic;
+
+            NewPlayerDirection = Follower.GetLastknownDistance();
+            rb.velocity = NewPlayerDirection / Time.fixedDeltaTime * FlingSpeed;
+
             
         }
 
@@ -75,6 +87,7 @@ public class PlayerScript : MonoBehaviour
                if (TestPlanet != null)
                 {
                     TestPlanet.LockinOrbit(this);
+
                 }
             }
 
@@ -109,7 +122,20 @@ public class PlayerScript : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        Vector3 directioninput = new Vector3(h, v, 0);
+        Vector3 directioninput = new Vector3(h, v, 0).normalized;
+        Vector3 currentdirection = rb.velocity.normalized;
+        Vector3 finaldirection = Vector3.RotateTowards(currentdirection, directioninput, ControlDelay, 0);
+
+        if (directioninput.magnitude <= 0.001f)
+        {
+            finaldirection = currentdirection;
+        }
+
+        //position = Vector2.Lerp(transform.position, directioninput, moveSpeed);
+
+
+
+
 
 
         if (IsinOrbit == false)
@@ -121,7 +147,7 @@ public class PlayerScript : MonoBehaviour
 
             //Vector3 Newforce = mouseDirection.normalized * moveSpeed;
 
-            Vector3 Newforce = directioninput.normalized * moveSpeed;
+            Vector3 Newforce = finaldirection.normalized * moveSpeed;
             Vector3 CurrentVelocity = rb.velocity;
             Vector3 FinalForce = Vector3.MoveTowards(CurrentVelocity, Newforce, Time.deltaTime * TurnSpeed);
             FinalForce *= Time.deltaTime;

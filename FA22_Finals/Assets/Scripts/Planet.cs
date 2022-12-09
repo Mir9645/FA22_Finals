@@ -10,17 +10,11 @@ public class Planet : MonoBehaviour
     public GameObject follower;
     
     Vector3 PlayerVelocity;
-    Vector3 PlayerPosition;
-    Vector3 FollowerPosition;
-
-    Vector3 NewPlayerVelocity;
-    Vector3 NewPlayerDirection;
 
     public float StartingVelocity;
     public float IncrementVelocity;
 
-    private float rotationSpeed;
-    public float RotateFactor;
+    public float RotationSpeed;
 
     public float Timer;
     public float DurationMaxSpeed;
@@ -28,7 +22,7 @@ public class Planet : MonoBehaviour
 
 
     public float DegreesPerSec;
-    public float rotationspeed;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +38,8 @@ public class Planet : MonoBehaviour
 
         float LerpValue = Timer / DurationMaxSpeed;
         float SpeedFactor = Mathf.Lerp(1, MaxSpeed, LerpValue);
-
-        rotationspeed = DegreesPerSec * RotateFactor * SpeedFactor* Time.deltaTime;
+        
+        float rotationspeed = DegreesPerSec * RotationSpeed * SpeedFactor* Time.deltaTime;
 
         Quaternion PlanetRotation = Quaternion.Euler(0, 0, rotationspeed);
 
@@ -60,6 +54,7 @@ public class Planet : MonoBehaviour
     public void LockinOrbit(PlayerScript playercheck)
     {
         PlayerVelocity = player.GetComponent<Rigidbody2D>().velocity;
+        Debug.Log(PlayerVelocity);
         Vector3 distancefromCenter = playercheck.transform.position - transform.position;
         float Radius = distancefromCenter.magnitude;
         DegreesPerSec = ((PlayerVelocity.magnitude) / (2 * Mathf.PI * Radius)) * 360;
