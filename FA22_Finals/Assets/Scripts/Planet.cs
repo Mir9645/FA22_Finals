@@ -8,7 +8,7 @@ public class Planet : MonoBehaviour
     Rigidbody rb;
     public GameObject player;
     public GameObject follower;
-
+    
     Vector3 PlayerVelocity;
     Vector3 PlayerPosition;
     Vector3 FollowerPosition;
@@ -18,6 +18,17 @@ public class Planet : MonoBehaviour
 
     public float StartingVelocity;
     public float IncrementVelocity;
+
+    private float rotationSpeed;
+    public float RotateFactor;
+
+    public float Timer;
+    public float DurationMaxSpeed;
+    public float MaxSpeed;
+
+
+    public float DegreesPerSec;
+    public float rotationspeed;
 
     // Start is called before the first frame update
     void Start()
@@ -29,35 +40,35 @@ public class Planet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       Timer += Time.deltaTime;
+
+        float LerpValue = Timer / DurationMaxSpeed;
+        float SpeedFactor = Mathf.Lerp(1, MaxSpeed, LerpValue);
+
+        rotationspeed = DegreesPerSec * RotateFactor * SpeedFactor* Time.deltaTime;
+
+        Quaternion PlanetRotation = Quaternion.Euler(0, 0, rotationspeed);
+
+        transform.rotation *= PlanetRotation;
+       
         //PlayerPosition = player.GetComponent<Rigidbody2D>().position;
 
         //FollowerPosition = follower.GetComponent<Rigidbody>().position;
     }
 
-    private void OnTriggerStay2D(Collider2D collider)
+  
+    public void LockinOrbit(PlayerScript playercheck)
     {
-        PlayerScript playercheck = collider.transform.GetComponent<PlayerScript>();
-        if (playercheck != null)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                PlayerVelocity = player.GetComponent<Rigidbody2D>().velocity;
+        PlayerVelocity = player.GetComponent<Rigidbody2D>().velocity;
+        Vector3 distancefromCenter = playercheck.transform.position - transform.position;
+        float Radius = distancefromCenter.magnitude;
+        DegreesPerSec = ((PlayerVelocity.magnitude) / (2 * Mathf.PI * Radius)) * 360;
 
-                playercheck.transform.SetParent(transform, true);
-                playercheck.IsinOrbit = true;
-            }
-            //else if (Input.GetKeyUp(KeyCode.Space))
-            //{
-            //    playercheck.transform.SetParent(null, true);
-            //    playercheck.IsinOrbit= false;
+        playercheck.transform.SetParent(transform, true);
+        playercheck.IsinOrbit = true;
+        playercheck.rb.bodyType = RigidbodyType2D.Kinematic;
+        playercheck.rb.velocity = Vector3.zero;
 
-                //NewPlayerDirection = PlayerPosition - FollowerPosition;
-                //NewPlayerDirection.z = 0f;
-
-                //vector3 newplayerposition = transform.position + newplayerdirection.normalized * newplayervelocity;
-
-                //rb.MovePosition(NewPlayerPosition);
-            //}
-        }
+        Timer = 0;
     }
 }
