@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     public float moveSpeed;
     public float ControlDelay;
     public float FlingSpeed;
-
+    
 
     public Rigidbody2D rb;
     Vector2 position = new Vector2(0f, 0f);
@@ -26,10 +26,12 @@ public class PlayerScript : MonoBehaviour
     public float _maxForce;
     public float PlayerRadius;
     public LayerMask PlanetMask;
+    public LayerMask InnerRingMask;
 
     public FollowPlayer Follower;
-    Planet planetScript;
 
+    public Planet currentPlanet;
+    
     //[SerializeField]
     //public float speed;
     //[SerializeField]
@@ -71,7 +73,8 @@ public class PlayerScript : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Dynamic;
 
             NewPlayerDirection = Follower.GetLastknownDistance();
-            rb.velocity = NewPlayerDirection / Time.fixedDeltaTime * FlingSpeed;
+            rb.velocity = NewPlayerDirection / Time.fixedDeltaTime * FlingSpeed; 
+            moveSpeed = rb.velocity.magnitude; 
 
             
         }
@@ -87,6 +90,8 @@ public class PlayerScript : MonoBehaviour
                if (TestPlanet != null)
                 {
                     TestPlanet.LockinOrbit(this);
+
+                    currentPlanet = TestPlanet;
 
                 }
             }
@@ -177,8 +182,50 @@ public class PlayerScript : MonoBehaviour
 
         else
         {
-            // drag down in to orbit
+            Vector3 directiontoCenter = currentPlanet.transform.position - transform.position;
+            transform.position += directiontoCenter.normalized * Time.fixedDeltaTime * currentPlanet.PlanetGravity;
+
         }
+       
+        Collider2D PlanetCollider = Physics2D.OverlapCircle(transform.position, PlayerRadius, PlanetMask);
+        Collider2D InCircleCollider = Physics2D.OverlapCircle(transform.position, PlayerRadius, InnerRingMask);
+        Debug.Log(PlanetCollider);
+        Debug.Log(InCircleCollider);
+
+        if (InCircleCollider != null)
+        {
+
+            Planet planetScript = PlanetCollider.transform.GetComponent<Planet>();
+
+            if (planetScript != null)
+            {
+                Vector3 directiontoCenter = planetScript.transform.position - transform.position;
+                if (IsinOrbit == true)
+                {
+                    transform.position += directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetInnerRingForce * 10;
+                }
+                else
+                {
+                    rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetInnerRingForce * 10);
+
+                }
+
+            }
+
+        }
+        else if (PlanetCollider != null && !Input.GetKeyDown(KeyCode.Space))
+        {
+           
+            Planet planetScript = PlanetCollider.transform.GetComponent<Planet>();
+
+            if (planetScript != null)
+            {   
+                Vector3 directiontoCenter = planetScript.transform.position - transform.position;
+                rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetGravity);
+            }
+
+        }
+
        
     }
 }
