@@ -6,19 +6,19 @@ public class Planet : MonoBehaviour
 {
     //public GameObject player;
     Rigidbody rb;
-    public GameObject player;
-    public GameObject follower;
+    private GameObject player;
+    private GameObject follower;
     
     Vector3 PlayerVelocity;
 
-    public float StartingVelocity;
-    public float IncrementVelocity;
+    public float PlanetRadius;
 
     public float RotationSpeed;
 
     public float Timer;
     public float DurationMaxSpeed;
     public float MaxSpeed;
+    
 
     public float DegreesPerSec;
 
@@ -29,6 +29,8 @@ public class Planet : MonoBehaviour
     void Start()
     {
        rb = GetComponent<Rigidbody>();
+       player = GameObject.FindObjectOfType<PlayerScript>().gameObject;
+       follower = GameObject.FindObjectOfType<FollowPlayer>().gameObject;
        
     }
 

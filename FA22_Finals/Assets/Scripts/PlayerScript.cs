@@ -86,7 +86,7 @@ public class PlayerScript : MonoBehaviour
             Debug.Log(Hitcollider);
             if (Hitcollider != null)
             {
-                Planet TestPlanet = Hitcollider.transform.GetComponent<Planet>();
+                Planet TestPlanet = Hitcollider.transform.GetComponentInParent<Planet>();
                if (TestPlanet != null)
                 {
                     TestPlanet.LockinOrbit(this);
@@ -195,7 +195,7 @@ public class PlayerScript : MonoBehaviour
         if (InCircleCollider != null)
         {
 
-            Planet planetScript = PlanetCollider.transform.GetComponent<Planet>();
+            Planet planetScript = PlanetCollider.transform.GetComponentInParent<Planet>();
 
             if (planetScript != null)
             {
@@ -216,7 +216,7 @@ public class PlayerScript : MonoBehaviour
         else if (PlanetCollider != null && !Input.GetKeyDown(KeyCode.Space))
         {
            
-            Planet planetScript = PlanetCollider.transform.GetComponent<Planet>();
+            Planet planetScript = PlanetCollider.transform.GetComponentInParent<Planet>();
 
             if (planetScript != null)
             {   
