@@ -24,24 +24,26 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D[] PlanetList = Physics2D.OverlapCircleAll(player.transform.position, RadiusOfSpawn, PlanetMask);
-        for (int i = PlanetList.Length; i < PlanetNumber; i++)
+        if (player != null)
         {
-            if (SpawnPlanet())
+            Collider2D[] PlanetList = Physics2D.OverlapCircleAll(player.transform.position, RadiusOfSpawn, PlanetMask);
+            for (int i = PlanetList.Length; i < PlanetNumber; i++)
             {
-                return;
+                if (SpawnPlanet())
+                {
+                    return;
+                }
+            }
+
+            Collider2D[] AsteroidList = Physics2D.OverlapCircleAll(player.transform.position, RadiusOfSpawn, AsteroidMask);
+            for (int i = AsteroidList.Length; i < AsteroidNumber; i++)
+            {
+                if (SpawnAsteroid())
+                {
+                    return;
+                }
             }
         }
-
-        Collider2D[] AsteroidList = Physics2D.OverlapCircleAll(player.transform.position, RadiusOfSpawn, AsteroidMask);
-        for (int i = AsteroidList.Length; i < AsteroidNumber; i++)
-        {
-            if (SpawnAsteroid())
-            {
-                return;
-            }
-        }
-
     }
 
     private bool SpawnPlanet()

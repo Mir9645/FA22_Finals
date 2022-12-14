@@ -9,6 +9,7 @@ public class Asteroid : MonoBehaviour
     public Sprite Original;
     public Sprite Damaged;
     public float AstetoridBounderies;
+    public float SelfDestructTime;
 
     public bool Destroyed = false;
     private Rigidbody2D rb;
@@ -37,8 +38,11 @@ public class Asteroid : MonoBehaviour
         {
             breakApart();
             spriteRenderer.sprite = Damaged;
+            GetComponent<Collider2D>().isTrigger= true;
             
             Destroyed = true;
+
+            //StartCoroutine(SelfDestruct());
         }
     }
 
@@ -49,8 +53,19 @@ public class Asteroid : MonoBehaviour
         foreach(GameObject i in asteroidDebris)
         {
             Transform dustposition = Transforms[TransformCount];
-            Instantiate(i, dustposition.position, transform.rotation);
+            
+            GameObject newdust = Instantiate(i, dustposition.position, transform.rotation);
+            AsteroidDebris dustScript = newdust.GetComponent<AsteroidDebris>();
+
+            dustScript.Drift(this);
+            
             TransformCount++;
         }
+    }
+
+    IEnumerator SelfDestruct()
+    {
+        yield return new WaitForSeconds(SelfDestructTime);
+        Destroy(gameObject);
     }
 }

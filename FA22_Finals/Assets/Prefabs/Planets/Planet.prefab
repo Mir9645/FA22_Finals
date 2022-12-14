@@ -47,13 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d3ffd05d902ba44848a7eb00904e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  follower: {fileID: 0}
   PlanetRadius: 12
   RotationSpeed: 1
   Timer: 0
   DurationMaxSpeed: 7
-  MaxSpeed: 5
+  MaxSpeed: 10
   DegreesPerSec: 0
   PlanetGravity: 0.3
   PlanetInnerRingForce: 5

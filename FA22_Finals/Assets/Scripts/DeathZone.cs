@@ -19,9 +19,12 @@ public class DeathZone : MonoBehaviour
             PlayerScript TestPlayer = Hitcollider.transform.GetComponent<PlayerScript>();
             if (TestPlayer != null)
             {
-                Destroy(TestPlayer.gameObject);
+                TestPlayer.beforedeath();
+                TestPlayer.gameObject.SetActive(false);
 
             }
+
+
         }
     }
 

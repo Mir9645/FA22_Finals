@@ -188,4 +188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreValue: 20
-  uIScript: {fileID: 0}
+  Driftforce: 10
+  rb: {fileID: 4431039579003341664}
+  SelfDestructTime: 0

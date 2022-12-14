@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -13,6 +14,8 @@ public class PlayerScript : MonoBehaviour
     public float moveSpeed;
     public float ControlDelay;
     public float FlingSpeed;
+
+    public ParticleSystem sparkle;
     
 
     public Rigidbody2D rb;
@@ -44,6 +47,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sparkle.Stop();
         Cursor.visible = false;
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(Vector3.right);
@@ -52,6 +56,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //mousePosition = Input.mousePosition;
         //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         //mouseDirection = mousePosition - transform.position;
@@ -241,6 +246,21 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-       
+        
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       
+        sparkle.Play();
+        
+    }
+
+    public void beforedeath()
+    {
+        sparkle.transform.SetParent(null);
+        sparkle.Play();
+    }
+    
+
 }
