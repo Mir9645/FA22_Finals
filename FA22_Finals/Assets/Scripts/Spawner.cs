@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Planet[] PlanetPrefabs;
-    public GameObject[] AsteroidPrefabs;
+    public Asteroid[] AsteroidPrefabs;
     public int PlanetNumber;
     public int AsteroidNumber;
     public float RadiusOfSpawn;
@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     PlayerScript player;
 
     public LayerMask PlanetMask;
+    public LayerMask AsteroidMask;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,16 @@ public class Spawner : MonoBehaviour
                 return;
             }
         }
+
+        Collider2D[] AsteroidList = Physics2D.OverlapCircleAll(player.transform.position, RadiusOfSpawn, AsteroidMask);
+        for (int i = AsteroidList.Length; i < AsteroidNumber; i++)
+        {
+            if (SpawnAsteroid())
+            {
+                return;
+            }
+        }
+
     }
 
     private bool SpawnPlanet()
@@ -62,5 +73,35 @@ public class Spawner : MonoBehaviour
 
         return false;
 
+    }
+
+    private bool SpawnAsteroid()
+    {
+        int AsteroidIndex = Random.Range(0, AsteroidPrefabs.Length);
+        Asteroid AsteroidPrefab = AsteroidPrefabs[AsteroidIndex];
+
+        for (int i = 0; i < MaxAttempt; i++)
+        {
+            float Angle = Random.value * Mathf.PI * 2;
+
+            Vector2 AsteroidPosition = player.transform.position;
+
+            AsteroidPosition.x += RadiusOfSpawn * Mathf.Cos(Angle) * Random.value;
+            AsteroidPosition.y += RadiusOfSpawn * Mathf.Sin(Angle) * Random.value;
+
+            if (Physics2D.OverlapCircle(AsteroidPosition, AsteroidPrefab.AstetoridBounderies))
+            {
+
+            }
+            else
+            {
+                Asteroid NewAsteroid = Instantiate(AsteroidPrefab);
+                NewAsteroid.transform.position = AsteroidPosition;
+                return true;
+            }
+
+        }
+
+        return false;
     }
 }

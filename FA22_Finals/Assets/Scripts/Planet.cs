@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
-    //public GameObject player;
-    Rigidbody rb;
+   
     private GameObject player;
-    private GameObject follower;
-    
+
     Vector3 PlayerVelocity;
 
     public float PlanetRadius;
@@ -28,10 +26,7 @@ public class Planet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       rb = GetComponent<Rigidbody>();
        player = GameObject.FindObjectOfType<PlayerScript>().gameObject;
-       follower = GameObject.FindObjectOfType<FollowPlayer>().gameObject;
-       
     }
 
     // Update is called once per frame
@@ -42,7 +37,7 @@ public class Planet : MonoBehaviour
         float LerpValue = Timer / DurationMaxSpeed;
         float SpeedFactor = Mathf.Lerp(1, MaxSpeed, LerpValue);
         
-        float rotationspeed = DegreesPerSec * RotationSpeed * SpeedFactor* Time.deltaTime;
+        float rotationspeed = DegreesPerSec * RotationSpeed * SpeedFactor * Time.deltaTime;
 
         Quaternion PlanetRotation = Quaternion.Euler(0, 0, rotationspeed);
 
@@ -53,7 +48,11 @@ public class Planet : MonoBehaviour
         //FollowerPosition = follower.GetComponent<Rigidbody>().position;
     }
 
-  
+    //public void ResetRotation(Planet gameObject)
+    //{
+    //    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+    //}
+
     public void LockinOrbit(PlayerScript playercheck)
     {
 

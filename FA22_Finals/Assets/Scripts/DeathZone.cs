@@ -15,7 +15,6 @@ public class DeathZone : MonoBehaviour
        
         if (Hitcollider != null)
         {
-            Debug.Log(Hitcollider);
 
             PlayerScript TestPlayer = Hitcollider.transform.GetComponent<PlayerScript>();
             if (TestPlayer != null)

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public GameObject[] asteroids;
+    public GameObject[] asteroidDebris;
     public Transform[] Transforms;
     public Sprite Original;
     public Sprite Damaged;
+    public float AstetoridBounderies;
 
     public bool Destroyed = false;
     private Rigidbody2D rb;
@@ -31,7 +32,7 @@ public class Asteroid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Collided");
+        
         if (Destroyed == false)
         {
             breakApart();
@@ -45,7 +46,7 @@ public class Asteroid : MonoBehaviour
     {
         int TransformCount = 0;
 
-        foreach(GameObject i in asteroids)
+        foreach(GameObject i in asteroidDebris)
         {
             Transform dustposition = Transforms[TransformCount];
             Instantiate(i, dustposition.position, transform.rotation);

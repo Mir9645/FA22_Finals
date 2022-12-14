@@ -31,6 +31,7 @@ public class PlayerScript : MonoBehaviour
     public FollowPlayer Follower;
 
     public Planet currentPlanet;
+    public int Score;
     
     //[SerializeField]
     //public float speed;
@@ -65,7 +66,7 @@ public class PlayerScript : MonoBehaviour
         //}
 
 
-
+        
         if (Input.GetKeyUp(KeyCode.Space) && IsinOrbit == true)
         {
             transform.SetParent(null, true);
@@ -74,16 +75,30 @@ public class PlayerScript : MonoBehaviour
 
             NewPlayerDirection = Follower.GetLastknownDistance();
             rb.velocity = NewPlayerDirection / Time.fixedDeltaTime * FlingSpeed; 
-            moveSpeed = rb.velocity.magnitude; 
+            moveSpeed = rb.velocity.magnitude;
 
-            
+            Collider2D Hitcollider = Physics2D.OverlapCircle(transform.position, PlayerRadius, PlanetMask);
+
+            if (Hitcollider != null)
+            {
+                Planet TestPlanet = Hitcollider.transform.GetComponentInParent<Planet>();
+                if (TestPlanet != null)
+                {   
+                    currentPlanet = TestPlanet;
+
+                    TestPlanet.DegreesPerSec = 0;
+
+                }
+            }
+
+
         }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
 
             Collider2D Hitcollider = Physics2D.OverlapCircle(transform.position, PlayerRadius, PlanetMask);
-            Debug.Log(Hitcollider);
+          
             if (Hitcollider != null)
             {
                 Planet TestPlanet = Hitcollider.transform.GetComponentInParent<Planet>();
