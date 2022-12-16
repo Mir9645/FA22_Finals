@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     public float FlingSpeed;
 
     public ParticleSystem sparkle;
+    public AudioSource SoundEffect;
     
 
     public Rigidbody2D rb;
@@ -34,7 +35,7 @@ public class PlayerScript : MonoBehaviour
     public FollowPlayer Follower;
 
     public Planet currentPlanet;
-    public int Score;
+    public bool playerDeath;
     
     //[SerializeField]
     //public float speed;
@@ -48,9 +49,12 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         sparkle.Stop();
-        Cursor.visible = false;
+
+        playerDeath = false;
+        
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(Vector3.right);
+        
     }
 
     // Update is called once per frame
@@ -222,12 +226,12 @@ public class PlayerScript : MonoBehaviour
                 Vector3 directiontoCenter = planetScript.transform.position - transform.position;
                 if (IsinOrbit == true)
                 {
-                    transform.position += directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetInnerRingForce * 10;
+                    transform.position += directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetGravity * 10;
                 }
                 else
                 {
-                    rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetInnerRingForce * 10);
-
+                    rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetGravity * 10);
+                    
                 }
 
             }
@@ -251,16 +255,25 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       
         sparkle.Play();
-        
+        SoundEffect.Play();
     }
 
     public void beforedeath()
     {
+        SoundEffect.transform.SetParent(null);
         sparkle.transform.SetParent(null);
+
+        SoundEffect.Play();
         sparkle.Play();
+
+        StartCoroutine(Death());
     }
     
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(2);
+        playerDeath = true;
+    }
 
 }

@@ -10,15 +10,16 @@ public class UIScript : MonoBehaviour
     public TMP_Text TimerUI;
 
     public float GameTime;
+
     public bool timerIsRunning = false;
 
-    public PlayerScript player;
+    public ScoreKeeper scoreKeeper;
 
     // Start is called before the first frame update
     void Start()
     {
-        player.Score = 0;
-        ScoreUI.text = "" + player.Score;
+        scoreKeeper.Score = 0;
+        ScoreUI.text = "" + scoreKeeper.Score;
 
         timerIsRunning = true;
 
@@ -54,7 +55,7 @@ public class UIScript : MonoBehaviour
     }
     void DisplayScore()
     {
-        ScoreUI.text = "" + player.Score;
+        ScoreUI.text = "" + scoreKeeper.Score;
 
     }
 }

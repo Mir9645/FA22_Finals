@@ -21,7 +21,7 @@ public class Planet : MonoBehaviour
     public float DegreesPerSec;
 
     public float PlanetGravity;
-    public float PlanetInnerRingForce;
+    public float PlanetGravitywhenOutofOrbit;
 
     // Start is called before the first frame update
     void Start()
