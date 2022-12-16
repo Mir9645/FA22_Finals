@@ -83,9 +83,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5752268662720604131, guid: a8d4e38f0982f47418816910ceab4345, type: 3}
+      propertyPath: PlanetRadius
+      value: 3.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5752268662720604140, guid: a8d4e38f0982f47418816910ceab4345, type: 3}
       propertyPath: m_Radius
-      value: 0.52796
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 5752268662720604140, guid: a8d4e38f0982f47418816910ceab4345, type: 3}
       propertyPath: m_Offset.x

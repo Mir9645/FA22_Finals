@@ -27,6 +27,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.0019737
       objectReference: {fileID: 0}
+    - target: {fileID: 2266999085522409600, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.070932776
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266999085522409600, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.070932776
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266999085522409600, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.0081e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266999085522409600, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0054e-10
+      objectReference: {fileID: 0}
     - target: {fileID: 2266999085537893926, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -102,6 +118,14 @@ PrefabInstance:
     - target: {fileID: 2266999085814679787, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
       propertyPath: m_Offset.y
       value: 0.010572206
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266999086048088114, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266999086048088125, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
+      propertyPath: PlanetRadius
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 2301733108408783164, guid: 26d56d92e586aed459b88ee3b7f54ace, type: 3}
       propertyPath: MaxSpeed

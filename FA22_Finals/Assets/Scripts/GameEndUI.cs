@@ -6,27 +6,18 @@ using UnityEngine;
 public class GameEndUI : MonoBehaviour
 {
     public TMP_Text ScoreUI;
-    public GameObject scoreKeeper;
+    public ScoreKeeper scoreKeeper;
    
     // Start is called before the first frame update
     void Start()
     {
-        scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>().gameObject;
-        ScoreUI.text = "" + scoreKeeper.GetComponent<ScoreKeeper>().Score;
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        ScoreUI.text = "" + scoreKeeper.Score;
 
-
+        Destroy(scoreKeeper.gameObject);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        DisplayScore();
-
-    }
-
-    void DisplayScore()
-    {
-        ScoreUI.text = "" + scoreKeeper.GetComponent<ScoreKeeper>().Score;
-
-    }
+  
+   
 }

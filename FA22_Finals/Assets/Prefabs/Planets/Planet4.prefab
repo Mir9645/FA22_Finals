@@ -31,6 +31,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.91348517
       objectReference: {fileID: 0}
+    - target: {fileID: 896117855914848517, guid: 40cfee553edd5b54eb77fef4b414c8c4, type: 3}
+      propertyPath: PlanetRadius
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 896117855914848522, guid: 40cfee553edd5b54eb77fef4b414c8c4, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 896117856059457477, guid: 40cfee553edd5b54eb77fef4b414c8c4, type: 3}
       propertyPath: m_RootOrder
       value: 0

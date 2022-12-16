@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEditor.Build.Content;
+
 
 public class AsteroidDebris : MonoBehaviour
 {
     public int ScoreValue;
     public int Driftforce;
-    private GameObject player;
     public GameObject scoreKeeper;
     public Rigidbody2D rb;
     public float SelfDestructTime;
@@ -21,7 +18,6 @@ public class AsteroidDebris : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        player = GameObject.FindObjectOfType<PlayerScript>().gameObject;
         scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>().gameObject;
     }
 

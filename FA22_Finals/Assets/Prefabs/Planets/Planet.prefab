@@ -104,7 +104,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.0005888655, y: 0.0001609182}
   serializedVersion: 2
-  m_Radius: 0.38745752
+  m_Radius: 0.4
 --- !u!114 &5752268662720604131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36eccb0b542dd1c49879106b9f4c07b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlanetRadius: 3.1804614
+  PlanetRadius: 2.3
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128

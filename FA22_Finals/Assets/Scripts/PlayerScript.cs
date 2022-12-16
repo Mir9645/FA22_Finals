@@ -230,7 +230,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 else
                 {
-                    rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetGravity * 10);
+                    rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetGravitywhenOutofOrbit * 10);
                     
                 }
 
@@ -245,7 +245,7 @@ public class PlayerScript : MonoBehaviour
             if (planetScript != null)
             {   
                 Vector3 directiontoCenter = planetScript.transform.position - transform.position;
-                rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetGravity);
+                rb.AddForce(directiontoCenter.normalized * Time.fixedDeltaTime * planetScript.PlanetGravitywhenOutofOrbit);
             }
 
         }
