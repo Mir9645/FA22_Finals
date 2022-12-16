@@ -36,13 +36,14 @@ public class Asteroid : MonoBehaviour
         
         if (Destroyed == false)
         {
+            Debug.Log("Collision");
             breakApart();
             spriteRenderer.sprite = Damaged;
             GetComponent<Collider2D>().isTrigger= true;
             
             Destroyed = true;
 
-            //StartCoroutine(SelfDestruct());
+            StartCoroutine(SelfDestruct());
         }
     }
 

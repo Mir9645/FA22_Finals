@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2307151308146067771}
   - component: {fileID: 4431039579003341664}
   - component: {fileID: -843527917387823613}
+  - component: {fileID: 8037062134328882016}
   m_Layer: 0
   m_Name: Dust 6
   m_TagString: Untagged
@@ -117,7 +118,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -149,3 +150,20 @@ PolygonCollider2D:
       - {x: 0.26, y: -0.26}
       - {x: 0.26, y: -0.07}
       - {x: 0.14999999, y: 0.24}
+--- !u!114 &8037062134328882016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4358339303325998601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ee4ec00bcc92c489d8f937cbff0c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreValue: 50
+  Driftforce: 40
+  scoreKeeper: {fileID: 0}
+  rb: {fileID: 4431039579003341664}
+  SelfDestructTime: 0

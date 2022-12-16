@@ -267,13 +267,13 @@ public class PlayerScript : MonoBehaviour
         SoundEffect.Play();
         sparkle.Play();
 
-        StartCoroutine(Death());
+        Invoke(nameof(Death), 1.0f);
     }
     
-    IEnumerator Death()
+    public void Death()
     {
-        yield return new WaitForSeconds(2);
         playerDeath = true;
+       
     }
 
 }

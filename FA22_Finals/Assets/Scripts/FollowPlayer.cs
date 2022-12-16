@@ -11,7 +11,6 @@ public class FollowPlayer : MonoBehaviour
     void Awake()
     {
         storedPositions = new List<Vector3>(); 
-
     }
 
     void Start()

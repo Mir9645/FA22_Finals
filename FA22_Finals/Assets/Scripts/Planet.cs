@@ -55,8 +55,6 @@ public class Planet : MonoBehaviour
 
     public void LockinOrbit(PlayerScript playercheck)
     {
-
-
         PlayerVelocity = player.GetComponent<Rigidbody2D>().velocity;
         Debug.Log(PlayerVelocity);
         Vector3 distancefromCenter = playercheck.transform.position - transform.position;
