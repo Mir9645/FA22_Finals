@@ -376,7 +376,7 @@ MonoBehaviour:
   - {fileID: 6519297686783719193, guid: 0b26a2163cd7ffa46aec37b54383af7d, type: 3}
   - {fileID: 5477974141324295571, guid: 1ff71bef214558b48b6f64fcc3d42129, type: 3}
   PlanetNumber: 100
-  AsteroidNumber: 130
+  AsteroidNumber: 170
   RadiusOfSpawn: 200
   MaxAttempt: 10
   PlanetMask:
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mousePosition: {x: 0, y: 0, z: 0}
   moveSpeed: 8
-  ControlDelay: 15
+  ControlDelay: 10
   FlingSpeed: 1
   sparkle: {fileID: 653910397}
   SoundEffect: {fileID: 365616985}
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   mousemindistance: 300
   IsinOrbit: 0
   TurnSpeed: 0.5
-  _acceleration: 3
+  _acceleration: 5
   _maxForce: 10
   PlayerRadius: 0.5
   PlanetMask:

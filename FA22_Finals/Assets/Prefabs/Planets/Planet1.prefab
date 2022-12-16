@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: DurationMaxSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5715261880582055650, guid: a8d4e38f0982f47418816910ceab4345, type: 3}
+      propertyPath: PlanetGravitywhenOutofOrbit
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5752268662617418017, guid: a8d4e38f0982f47418816910ceab4345, type: 3}
       propertyPath: m_Name
       value: Planet1

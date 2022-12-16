@@ -8,6 +8,10 @@ public class Asteroid : MonoBehaviour
     public Transform[] Transforms;
     public Sprite Original;
     public Sprite Damaged;
+
+    public GameObject scoreKeeper;
+    private int ScoreValue;
+
     public float AstetoridBounderies;
     public float SelfDestructTime;
 
@@ -21,6 +25,7 @@ public class Asteroid : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>().gameObject;
 
         spriteRenderer.sprite = Original;
     }
@@ -33,9 +38,20 @@ public class Asteroid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        
+
         if (Destroyed == false)
         {
+            PlayerScript player = col.transform.GetComponent<PlayerScript>();
+            if (player != null)
+            {
+                float ImpactSpeed = player.rb.velocity.magnitude;
+                Debug.Log(ImpactSpeed);
+
+                ScoreValue = Mathf.RoundToInt(ImpactSpeed) * 10;
+
+                scoreKeeper.GetComponent<ScoreKeeper>().Score += ScoreValue;
+            }
+
             Debug.Log("Collision");
             breakApart();
             spriteRenderer.sprite = Damaged;

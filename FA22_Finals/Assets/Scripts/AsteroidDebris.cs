@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class AsteroidDebris : MonoBehaviour
 {
-    public int ScoreValue;
+    //public int ScoreValue;
     public int Driftforce;
-    public GameObject scoreKeeper;
+    //public GameObject scoreKeeper;
     public Rigidbody2D rb;
     public float SelfDestructTime;
 
@@ -18,7 +18,7 @@ public class AsteroidDebris : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>().gameObject;
+        //scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>().gameObject;
     }
 
     public void Drift(Asteroid SourceAsteroid)
@@ -26,7 +26,7 @@ public class AsteroidDebris : MonoBehaviour
         Vector3 asteroidDirection = transform.position - SourceAsteroid.transform.position;
         rb.AddForce(asteroidDirection.normalized * Driftforce);
 
-        //StartCoroutine(SelfDestruct());
+        StartCoroutine(SelfDestruct());
     }
 
     // Update is called once per frame
@@ -39,8 +39,8 @@ public class AsteroidDebris : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            scoreKeeper.GetComponent<ScoreKeeper>().Score += ScoreValue;
-            Destroy(this.gameObject);
+            //scoreKeeper.GetComponent<ScoreKeeper>().Score += ScoreValue;
+            //Destroy(this.gameObject);
         }
     }
 

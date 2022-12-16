@@ -106,8 +106,9 @@ MonoBehaviour:
   - {fileID: 5428910065706080572}
   Original: {fileID: 21300000, guid: 06220588ac1c49942b2f40bf085bfe6e, type: 3}
   Damaged: {fileID: 21300000, guid: 47df528f25be3d54b8d439dccf912d9f, type: 3}
+  scoreKeeper: {fileID: 0}
   AstetoridBounderies: 5
-  SelfDestructTime: 15
+  SelfDestructTime: 10
   Destroyed: 0
 --- !u!212 &5428910064552111295
 SpriteRenderer:

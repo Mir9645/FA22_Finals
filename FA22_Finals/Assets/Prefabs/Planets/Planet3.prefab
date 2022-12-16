@@ -171,5 +171,9 @@ PrefabInstance:
       propertyPath: DurationMaxSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 930907877664518148, guid: 40cfee553edd5b54eb77fef4b414c8c4, type: 3}
+      propertyPath: PlanetGravitywhenOutofOrbit
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40cfee553edd5b54eb77fef4b414c8c4, type: 3}
